@@ -238,17 +238,8 @@ class Search(ListView):
 	def get_queryset(self):
 		return Post.objects.filter(title__icontains=self.request.GET.get('s')).filter(is_published=True)
 
-	# icontains i сокр. от ikey sensitive регистронезависимо, но в нашей бд
-	# свои особенности по поиску регистро или независимо для латиницы всегда
-	# регистронезависимый, в кириллице всегда регистро зависимый
-	# Функция get заберет из массива GET данные, мы передадим строку которую пользователь
-	# введет для поиска
 
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super().get_context_data(**kwargs)
-		# И нам потребуется переменная s чтобы не потерять поисковой запрос
-		# И теперь используем ее в контексте.. идем в шаблон search.html
-		# <a class="page-numbers" href="?{{ s }}page={{ p }}">{{ p }}</a>
-		# так у нас там получилось
 		context['s'] = f"s={self.request.GET.get('s')}&"
 		return context
