@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'ckeditor',
+    'rest_framework',
     'blog.apps.BlogConfig',
+    'blog_api.apps.BlogApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -234,3 +236,33 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+            #'rest_framework.authentication.TokenAuthentication',
+            # разрешили аутентификацию по токенам рестфреймворка
+            # path('api/v1/drf-auth/', include('rest_framework.urls')),
+
+            # 'rest_framework.authentication.BasicAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            # разрешили аутентификацию по сессиям (они по умолчанию)
+            # оставим, потому что она у нас есть
+            # path('api/v1/auth/', include('djoser.urls')),  # new
+            # re_path(r'^auth/', include('djoser.urls.authtoken')),  # new
+            #
+            # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+            # аутентификация через JWT токены
+        ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    # ]
+
+}

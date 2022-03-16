@@ -76,7 +76,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts')
     tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
     author_l = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    likes = models.ManyToManyField(User, related_name='blog_posts', null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано?')
 
     def total_likes(self):
