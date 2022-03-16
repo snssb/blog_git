@@ -13,6 +13,7 @@ from django.db.models import F
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 
+
 from .templatetags.slugt import dj_slug
 
 

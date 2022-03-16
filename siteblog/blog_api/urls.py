@@ -1,11 +1,11 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from blog_api.views import PostListView, PostDetailView
-
+from blog_api.views import PostListView, PostDetailView, PostPhotoView
 
 router = routers.SimpleRouter()
-router.register(r'posts', PostDetailView)
+router.register(r'posts', PostDetailView, basename='post')
+router.register(r'posts/photo', PostPhotoView, basename='post')
 
 
 
