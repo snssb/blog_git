@@ -10,7 +10,7 @@ class HomeListViewAndPaginateTest(TestCase):
     @classmethod
     def setUpTestData(cls):
 
-        User.objects.create_user('username', 'Pas$w0rd')
+        # User.objects.create_user('username', 'Pas$w0rd')
         Category.objects.create(title='Eda', slug='eda')
         Tag.objects.create(title='torty', slug='torty')
 
@@ -29,20 +29,15 @@ class HomeListViewAndPaginateTest(TestCase):
 
     def test_view_uses_correct_template(self):
         resp = self.client.get(reverse('home'))
-        self.assertEqual(resp.status_code, 200)
-
         self.assertTemplateUsed(resp, 'blog/index.html')
 
     def test_pagination_is_six(self):
         resp = self.client.get(reverse('home'))
-        self.assertEqual(resp.status_code, 200)
         self.assertTrue('is_paginated' in resp.context)
-        self.assertTrue(resp.context['is_paginated'])
         self.assertTrue(len(resp.context['object_list']) == 6)
 
-    def test_lists_all_posts(self):
+    def test_list_next_page(self):
         resp = self.client.get(reverse('home')+'?page=2')
-        self.assertEqual(resp.status_code, 200)
         self.assertTrue('is_paginated' in resp.context)
         self.assertTrue(resp.context['is_paginated'])
         self.assertTrue(len(resp.context['object_list']) == 2)
