@@ -222,9 +222,9 @@ class GetPost(DetailView):
 		total_likes = likes.total_likes()
 		context = super().get_context_data(**kwargs)
 		context["total_likes"] = total_likes
-		# self.object.views = F('views') + 1
-		# self.object.save()
-		# self.object.refresh_from_db()
+		self.object.views = F('views') + 1
+		self.object.save()
+		self.object.refresh_from_db(fields=('views',))
 		return context
 
 	def get_queryset(self):
