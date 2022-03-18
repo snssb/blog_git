@@ -15,3 +15,10 @@ D:\blog_git>.\venv\scripts\activate
 (venv) D:\blog_git\siteblog>python manage.py runserver
 
 Суперпользователь: Логин, Пароль - root, root
+
+API:
+"""Получить список постов  /api/v1/posts/"""
+
+"""Обновить пост, за исключением фото  /api/v1/posts/1"""
+
+"""Обновить фото поста  /api/v1/posts/photo/1/"""
