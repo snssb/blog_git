@@ -1,5 +1,10 @@
+открыть cmd
+
 скачать проект
-D:\>cd blog_git или D:\>git clone https://github.com/snssb/blog_git.git
+https://github.com/snssb/blog_git.git или D:\>git clone https://github.com/snssb/blog_git.git
+
+войти в нужную директорию
+D:\>cd blog_git
 
 создать виртуальное окружение
 D:\blog_git>python -m venv venv
